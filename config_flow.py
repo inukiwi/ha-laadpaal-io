@@ -1,4 +1,4 @@
-"""Config flow for the Laadpalen integration."""
+"""Config flow for the Laadpaal.io integration."""
 
 from __future__ import annotations
 
@@ -59,7 +59,7 @@ class LaadpaalConfigFlow(ConfigFlow, domain=DOMAIN):
     ) -> ConfigFlowResult:
         """Handle the locations step."""
         if user_input is not None:
-            location = await LaadpaalApi(self.hass).async_get_location_details(
+            location = await LaadpaalApi(self.hass).async_get_location(
                 user_input[CONF_LOCATION_ID]
             )
             return self.async_create_entry(

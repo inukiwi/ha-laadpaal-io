@@ -46,7 +46,7 @@ class LaadpaalApi:
         params = {"lat": latitude, "lon": longitude, "radius": radius}
         return await self.async_get_data("locations", params=params)
 
-    async def async_get_location_details(self, location_id: str) -> dict[str, Any]:
+    async def async_get_location(self, location_id: str) -> dict[str, Any]:
         """Get details for a specific charging location."""
         return await self.async_get_data(f"locations/{location_id}")
 

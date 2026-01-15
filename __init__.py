@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 import logging
 
 from homeassistant.config_entries import ConfigEntry
@@ -9,12 +10,22 @@ from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 
 from .api import LaadpaalApi
+from .coordinator import LaadpaalCoordinator
 
-_PLATFORMS: list[Platform] = [Platform.BINARY_SENSOR, Platform.SENSOR]
+_PLATFORMS: list[Platform] = [Platform.BINARY_SENSOR]
 
 _LOGGER = logging.getLogger(__name__)
 
-type LaadpaalConfigEntry = ConfigEntry[LaadpaalApi]
+
+@dataclass
+class LaadpaalData:
+    """Data stored in runtime_data."""
+
+    api: LaadpaalApi
+    coordinator: LaadpaalCoordinator
+
+
+type LaadpaalConfigEntry = ConfigEntry[LaadpaalData]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: LaadpaalConfigEntry) -> bool:
@@ -26,7 +37,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: LaadpaalConfigEntry) -> 
     except ValueError as err:
         _LOGGER.error("Error connecting to laadpaal.io API: %s", err)
         return False
-    entry.runtime_data = api
+
+    coordinator = LaadpaalCoordinator(hass, entry, api)
+    await coordinator.async_config_entry_first_refresh()
+
+    entry.runtime_data = LaadpaalData(api=api, coordinator=coordinator)
 
     await hass.config_entries.async_forward_entry_setups(entry, _PLATFORMS)
 

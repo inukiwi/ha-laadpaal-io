@@ -22,5 +22,16 @@
             "cannot_connect": "Failed to connect",
             "unknown": "Unexpected error"
         }
+    },
+    "entity": {
+        "binary_sensor": {
+            "chargepoint_occupied": {
+                "name": "Charge Point Occupied",
+                "state": {
+                    "on": "Occupied",
+                    "off": "Available"
+                }
+            }
+        }
     }
 }
