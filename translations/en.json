@@ -4,15 +4,15 @@
             "user": {
                 "data": {
                     "location": "Location",
-                    "location_id": "Chargingpoint"
+                    "location_id": "Charging Station"
                 },
-                "description": "Select the approximate location of your charging point on the map. In the next step you can select the exact charging point from a list of nearby locations."
+                "description": "Select the approximate location of your charging station on the map. In the next step you can select the exact charging station from a list of nearby locations."
             },
             "location": {
                 "data": {
-                    "location_id": "Chargingpoint"
+                    "location_id": "Charging Station"
                 },
-                "description": "Select your charging point from the list."
+                "description": "Select your charging station from the list."
             }
         },
         "abort": {
