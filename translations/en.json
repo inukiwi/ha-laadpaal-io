@@ -32,6 +32,15 @@
                     "off": "Available"
                 }
             }
+        },
+        "sensor": {
+            "available_chargepoints": {
+                "name": "Available Charge Points",
+                "state": {
+                    "one": "{count} available charge point",
+                    "other": "{count} available charge points"
+                }
+            }
         }
     }
 }

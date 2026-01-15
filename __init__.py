@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant
 from .api import LaadpaalApi
 from .coordinator import LaadpaalCoordinator
 
-_PLATFORMS: list[Platform] = [Platform.BINARY_SENSOR]
+_PLATFORMS: list[Platform] = [Platform.BINARY_SENSOR, Platform.SENSOR]
 
 _LOGGER = logging.getLogger(__name__)
 
