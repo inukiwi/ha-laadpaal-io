@@ -11,7 +11,9 @@ async def async_setup_entry(hass, entry, async_add_entities):
     """Set up sensors."""
     coordinator = entry.runtime_data.coordinator
 
-    entities = [AvailableChargePointsSensor(coordinator)]
+    location_id = entry.data["location_id"]
+
+    entities = [AvailableChargePointsSensor(coordinator, location_id)]
 
     async_add_entities(entities)
 
@@ -27,11 +29,10 @@ class AvailableChargePointsSensor(CoordinatorEntity[LaadpaalCoordinator], Sensor
     _attr_has_entity_name = True
     _attr_translation_key = "chargepoint_occupied"
 
-    def __init__(self, coordinator) -> None:
+    def __init__(self, coordinator, location_id) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
-        self._attr_unique_id = "available_chargepoints"
-        self._attr_name = "Available Charge Points"
+        self._attr_unique_id = f"{location_id}_available_chargepoints"
         self._attr_icon = "mdi:ev-station"
 
     @property

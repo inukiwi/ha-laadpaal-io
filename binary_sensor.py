@@ -1,4 +1,4 @@
-"""Binary sensor for the Laadpaal.io integration."""
+"""Binary sensors for the Laadpaal.io integration."""
 
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
@@ -21,7 +21,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     entities = [
         ChargePointOccupiedSensor(coordinator, location_id, evse["uid"])
         for evse in location.get("evses", [])
-    ]
+    ] + [ChargingStationOccupiedSensor(coordinator, location_id)]
 
     async_add_entities(entities)
 
@@ -45,7 +45,7 @@ class ChargePointOccupiedSensor(
         super().__init__(coordinator)
         self.chargepoint_uid = chargepoint_uid
         self._attr_unique_id = f"{location_id}_{chargepoint_uid}_occupied"
-        self._attr_name = f"{chargepoint_uid} Occupied"
+        self._attr_translation_placeholders = {"chargepoint_uid": chargepoint_uid}
 
     @property
     def is_on(self):
@@ -56,3 +56,29 @@ class ChargePointOccupiedSensor(
         if evse:
             return evse.get("status") != "AVAILABLE"
         return None
+
+
+class ChargingStationOccupiedSensor(
+    CoordinatorEntity[LaadpaalCoordinator], BinarySensorEntity
+):
+    """Sensor to indicate if the charging station has no available charge points."""
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        """Return device information for the charging station."""
+        return self.coordinator.device_info
+
+    _attr_device_class = BinarySensorDeviceClass.PLUG
+    _attr_has_entity_name = True
+    _attr_translation_key = "chargingstation_occupied"
+
+    def __init__(self, coordinator, location_id) -> None:
+        """Initialize the sensor."""
+        super().__init__(coordinator)
+        self._attr_unique_id = f"{location_id}_occupied"
+
+    @property
+    def is_on(self):
+        """Check if there are no available charge points."""
+        evses = self.coordinator.data.get("evses", [])
+        return not any(evse.get("status") == "AVAILABLE" for evse in evses)

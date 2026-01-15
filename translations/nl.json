@@ -1,0 +1,53 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "location": "Locatie",
+                    "location_id": "Laadpaal"
+                },
+                "description": "Selecteer de geschatte locatie van je laadpaal op de kaart. In de volgende stap kun je de exacte laadpaal selecteren uit een lijst met nabijgelegen locaties."
+            },
+            "location": {
+                "data": {
+                    "location_id": "Laadpaal"
+                },
+                "description": "Kies je laadpaal uit de lijst."
+            }
+        },
+        "abort": {
+            "already_configured": "Apparaat is al geconfigureerd"
+        },
+        "error": {
+            "cannot_connect": "Kan geen verbinding maken",
+            "unknown": "Onverwachte fout"
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "chargepoint_occupied": {
+                "name": "{chargepoint_uid} bezet",
+                "state": {
+                    "on": "Bezet",
+                    "off": "Beschikbaar"
+                }
+            },
+            "chargingstation_occupied": {
+                "name": "Laadstation bezet",
+                "state": {
+                    "on": "Geen beschikbare laadpunten",
+                    "off": "Laadpunt(en) beschikbaar"
+                }
+            }
+        },
+        "sensor": {
+            "available_charge_points": {
+                "name": "Beschikbare laadpunten",
+                "state": {
+                    "one": "{count} beschikbaar laadpunt",
+                    "other": "{count} beschikbare laadpunten"
+                }
+            }
+        }
+    }
+}

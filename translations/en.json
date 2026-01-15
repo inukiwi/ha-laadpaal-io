@@ -26,16 +26,23 @@
     "entity": {
         "binary_sensor": {
             "chargepoint_occupied": {
-                "name": "Charge Point Occupied",
+                "name": "{chargepoint_uid} occupied",
                 "state": {
                     "on": "Occupied",
                     "off": "Available"
                 }
+            },
+            "chargingstation_occupied": {
+                "name": "Charging station occupied",
+                "state": {
+                    "on": "No available charge points",
+                    "off": "Charge point(s) available"
+                }
             }
         },
         "sensor": {
-            "available_chargepoints": {
-                "name": "Available Charge Points",
+            "available_charge_points": {
+                "name": "Available charge points",
                 "state": {
                     "one": "{count} available charge point",
                     "other": "{count} available charge points"
