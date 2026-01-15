@@ -1,0 +1,26 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "location": "Location",
+                    "location_id": "Chargingpoint"
+                },
+                "description": "Select the approximate location of your charging point on the map. In the next step you can select the exact charging point from a list of nearby locations."
+            },
+            "location": {
+                "data": {
+                    "location_id": "Chargingpoint"
+                },
+                "description": "Select your charging point from the list."
+            }
+        },
+        "abort": {
+            "already_configured": "Device is already configured"
+        },
+        "error": {
+            "cannot_connect": "Failed to connect",
+            "unknown": "Unexpected error"
+        }
+    }
+}

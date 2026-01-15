@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0",
+  "domain": "laadpaal_io",
+  "name": "Laadpaal.io",
+  "codeowners": [
+    "@inukiwi"
+  ],
+  "config_flow": true,
+  "documentation": "https://www.home-assistant.io/integrations/laadpaal_io",
+  "iot_class": "cloud_polling",
+  "quality_scale": "bronze",
+  "requirements": []
+}
