@@ -27,7 +27,7 @@ class AvailableChargePointsSensor(CoordinatorEntity[LaadpaalCoordinator], Sensor
         return self.coordinator.device_info
 
     _attr_has_entity_name = True
-    _attr_translation_key = "chargepoint_occupied"
+    _attr_translation_key = "available_chargepoints"
 
     def __init__(self, coordinator, location_id) -> None:
         """Initialize the sensor."""

@@ -41,7 +41,7 @@
             }
         },
         "sensor": {
-            "available_charge_points": {
+            "available_chargepoints": {
                 "name": "Available charge points",
                 "state": {
                     "one": "{count} available charge point",

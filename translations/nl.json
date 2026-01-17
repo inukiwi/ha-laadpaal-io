@@ -33,7 +33,7 @@
                 }
             },
             "chargingstation_occupied": {
-                "name": "Laadstation bezet",
+                "name": "Laadpaal bezet",
                 "state": {
                     "on": "Geen beschikbare laadpunten",
                     "off": "Laadpunt(en) beschikbaar"
@@ -41,7 +41,7 @@
             }
         },
         "sensor": {
-            "available_charge_points": {
+            "available_chargepoints": {
                 "name": "Beschikbare laadpunten",
                 "state": {
                     "one": "{count} beschikbaar laadpunt",
