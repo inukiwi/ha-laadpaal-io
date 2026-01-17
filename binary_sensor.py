@@ -48,14 +48,27 @@ class ChargePointOccupiedSensor(
         self._attr_translation_placeholders = {"chargepoint_uid": chargepoint_uid}
 
     @property
+    def _evse_data(self):
+        """Helper to get the current EVSE data from the coordinator."""
+        evses = self.coordinator.data.get("evses", [])
+        return next((e for e in evses if e["uid"] == self.chargepoint_uid), None)
+
+    @property
     def is_on(self):
         """Check the status of this specific charge point."""
-        evses = self.coordinator.data.get("evses", [])
-        evse = next((e for e in evses if e["uid"] == self.chargepoint_uid), None)
+        evse = self._evse_data
 
         if evse:
             return evse.get("status") != "AVAILABLE"
         return None
+
+    @property
+    def extra_state_attributes(self):
+        """Return the state attributes."""
+        evse = self._evse_data
+        if evse:
+            return {"status": evse.get("status")}
+        return {}
 
 
 class ChargingStationOccupiedSensor(
