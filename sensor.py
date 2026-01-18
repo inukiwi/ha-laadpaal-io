@@ -40,3 +40,11 @@ class AvailableChargePointsSensor(CoordinatorEntity[LaadpaalCoordinator], Sensor
         """Check the number of available charge points."""
         evses = self.coordinator.data.get("evses", [])
         return sum(1 for evse in evses if evse.get("status") == "AVAILABLE")
+
+    @property
+    def extra_state_attributes(self):
+        """Return the state attributes."""
+        evses = self.coordinator.data.get("evses", [])
+        if evses:
+            return {"total_chargepoints": len(evses)}
+        return {}

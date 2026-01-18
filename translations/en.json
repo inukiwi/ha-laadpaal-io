@@ -46,6 +46,11 @@
                 "state": {
                     "one": "{count} available charge point",
                     "other": "{count} available charge points"
+                },
+                "state_attributes": {
+                    "total_chargepoints": {
+                        "name": "Total charge points"
+                    }
                 }
             }
         }

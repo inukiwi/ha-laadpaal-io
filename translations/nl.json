@@ -46,6 +46,11 @@
                 "state": {
                     "one": "{count} beschikbaar laadpunt",
                     "other": "{count} beschikbare laadpunten"
+                },
+                "state_attributes": {
+                    "total_chargepoints": {
+                        "name": "Totaal aantal laadpunten"
+                    }
                 }
             }
         }
