@@ -1,7 +1,11 @@
 # Laadpaal.io integration for Home Assistant
 
 ## About this repo
-This integration provides real-time status updates for charging stations in The Netherlands using the API at [Laadpaal.io](https://laadpaal.io) (this service is also maintained by me ([@inukiwi](https://github.com/inukiwi))). The data is sourced from [DOT-NL by NDW](https://www.ndw.nu/dataportalen/dot-nl). It was created to monitor the availability of nearby or specific charging points directly within your dashboards without needing to check external apps constantly. You can also automate notifications for when a chargepoint becomes available so you can charge your EV.
+### English
+This integration provides real-time status updates for charging stations in The Netherlands using the API at [Laadpaal.io](https://laadpaal.io) (this service is also maintained by me ([@inukiwi](https://github.com/inukiwi))). The data is sourced from [DOT-NL by NDW](https://www.ndw.nu/dataportalen/dot-nl). It was created to monitor the availability of nearby or specific charging points directly within your dashboards without needing to check external apps constantly. With these sensors you also automate notifications for when a chargepoint becomes available so you can charge your EV.
+
+### Dutch
+Deze integratie biedt real-time statusupdates voor laadpalen in Nederland via de API van [Laadpaal.io](https://laadpaal.io) (deze dienst wordt ook door mij onderhouden ([@inukiwi](https://github.com/inukiwi))). De data is afkomstig van [DOT-NL van het NDW](https://www.ndw.nu/dataportalen/dot-nl). Het is gemaakt om de beschikbaarheid van nabijgelegen of specifieke laadpunten direct in je dashboards te monitoren, zonder constant externe apps te hoeven checken. Met deze sensoren kan je ook meldingen automatiseren voor wanneer een laadpunt beschikbaar komt, zodat je je EV kunt opladen.
 
 ---
 
