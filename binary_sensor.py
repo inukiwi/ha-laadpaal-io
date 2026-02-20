@@ -1,9 +1,6 @@
 """Binary sensors for the Laadpaal.io integration."""
 
-from homeassistant.components.binary_sensor import (
-    BinarySensorDeviceClass,
-    BinarySensorEntity,
-)
+from homeassistant.components.binary_sensor import BinarySensorEntity
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -36,15 +33,14 @@ class ChargePointOccupiedSensor(
         """Return device information for the charging station."""
         return self.coordinator.device_info
 
-    _attr_device_class = BinarySensorDeviceClass.PLUG
     _attr_has_entity_name = True
-    _attr_translation_key = "chargepoint_occupied"
+    _attr_translation_key = "chargepoint_available"
 
     def __init__(self, coordinator, location_id, chargepoint_uid) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
         self.chargepoint_uid = chargepoint_uid
-        self._attr_unique_id = f"{location_id}_{chargepoint_uid}_occupied"
+        self._attr_unique_id = f"{location_id}_{chargepoint_uid}_available"
         self._attr_translation_placeholders = {"chargepoint_uid": chargepoint_uid}
 
     @property
@@ -59,7 +55,7 @@ class ChargePointOccupiedSensor(
         evse = self._evse_data
 
         if evse:
-            return evse.get("status") != "AVAILABLE"
+            return evse.get("status") == "AVAILABLE"
         return None
 
     @property
@@ -69,6 +65,13 @@ class ChargePointOccupiedSensor(
         if evse:
             return {"status": evse.get("status")}
         return {}
+
+    @property
+    def icon(self):
+        """Return the icon based on the charge point status."""
+        if self.is_on:
+            return "mdi:car-off"
+        return "mdi:car-electric"
 
 
 class ChargingStationOccupiedSensor(
@@ -81,17 +84,23 @@ class ChargingStationOccupiedSensor(
         """Return device information for the charging station."""
         return self.coordinator.device_info
 
-    _attr_device_class = BinarySensorDeviceClass.PLUG
     _attr_has_entity_name = True
-    _attr_translation_key = "chargingstation_occupied"
+    _attr_translation_key = "chargingstation_available"
 
     def __init__(self, coordinator, location_id) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
-        self._attr_unique_id = f"{location_id}_occupied"
+        self._attr_unique_id = f"{location_id}_available"
 
     @property
     def is_on(self):
-        """Check if there are no available charge points."""
+        """Check if there are available charge points."""
         evses = self.coordinator.data.get("evses", [])
-        return not any(evse.get("status") == "AVAILABLE" for evse in evses)
+        return any(evse.get("status") == "AVAILABLE" for evse in evses)
+
+    @property
+    def icon(self):
+        """Return the icon based on the charge point status."""
+        if self.is_on:
+            return "mdi:car-off"
+        return "mdi:car-electric"

@@ -28,12 +28,12 @@ class AvailableChargePointsSensor(CoordinatorEntity[LaadpaalCoordinator], Sensor
 
     _attr_has_entity_name = True
     _attr_translation_key = "available_chargepoints"
+    _attr_icon = "mdi:ev-station"
 
     def __init__(self, coordinator, location_id) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
         self._attr_unique_id = f"{location_id}_available_chargepoints"
-        self._attr_icon = "mdi:ev-station"
 
     @property
     def native_value(self):

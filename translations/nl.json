@@ -25,18 +25,18 @@
     },
     "entity": {
         "binary_sensor": {
-            "chargepoint_occupied": {
-                "name": "{chargepoint_uid} bezet",
+            "chargepoint_available": {
+                "name": "{chargepoint_uid} beschikbaar",
                 "state": {
-                    "on": "Bezet",
-                    "off": "Beschikbaar"
+                    "on": "Beschikbaar",
+                    "off": "Bezet"
                 }
             },
-            "chargingstation_occupied": {
-                "name": "Laadpaal bezet",
+            "chargingstation_available": {
+                "name": "Laadpaal beschikbaar",
                 "state": {
-                    "on": "Geen beschikbare laadpunten",
-                    "off": "Laadpunt(en) beschikbaar"
+                    "on": "Laadpunt(en) beschikbaar",
+                    "off": "Geen beschikbare laadpunten"
                 }
             }
         },
