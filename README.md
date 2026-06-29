@@ -7,6 +7,13 @@ This integration provides real-time status updates for charging stations in The 
 ### Dutch
 Deze integratie biedt real-time statusupdates voor laadpalen in Nederland via de API van [Laadpaal.io](https://laadpaal.io) (deze dienst wordt ook door mij onderhouden ([@inukiwi](https://github.com/inukiwi))). De data is afkomstig van [DOT-NL van het NDW](https://www.ndw.nu/dataportalen/dot-nl). Het is gemaakt om de beschikbaarheid van nabijgelegen of specifieke laadpunten direct in je dashboards te monitoren, zonder constant externe apps te hoeven checken. Met deze sensoren kan je ook meldingen automatiseren voor wanneer een laadpunt beschikbaar komt, zodat je je EV kunt opladen.
 
+## Notes about data freshness
+### English
+The data for Laadpaal.io is retrieved from the DOT-NL dataset every minute, but this data can be outdated depending on the charging station. The NDW depends on charging providers to supply the information and not every provider has a direct connection as of this moment, causing some charging stations to only be refreshed every 6 hours.
+
+### Dutch
+De data van Laadpaal.io wordt elke minuut opgehaald vanuit de DOT-NL dataset, maar deze data kan afhankelijk van de laadpaal enigzins verouderd zijn. Het NDW is afhankelijk van de laadpaalaanbieders en nog niet elke aanbieder heeft een directe koppeling, waardoor sommige laadpalen alleen elke 6 uur worden bijgewerkt.
+
 ---
 
 ## Installation
