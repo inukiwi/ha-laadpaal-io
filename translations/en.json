@@ -1,58 +1,71 @@
 {
-    "config": {
-        "step": {
-            "user": {
-                "data": {
-                    "location": "Location",
-                    "location_id": "Charging Station"
-                },
-                "description": "Select the approximate location of your charging station on the map. In the next step you can select the exact charging station from a list of nearby locations."
-            },
-            "location": {
-                "data": {
-                    "location_id": "Charging Station"
-                },
-                "description": "Select your charging station from the list."
-            }
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "location": "Location"
         },
-        "abort": {
-            "already_configured": "Device is already configured"
+        "description": "Select the approximate location of your charging station on the map. In the next step you can select the exact charging station from a list of nearby locations."
+      },
+      "reconfigure": {
+        "data": {
+          "location": "Location"
         },
-        "error": {
-            "cannot_connect": "Failed to connect",
-            "unknown": "Unexpected error"
-        }
+        "description": "Select the approximate location of your charging station on the map to update this entry to DOT-NL."
+      },
+      "location": {
+        "data": {
+          "feature_id": "Charging station"
+        },
+        "description": "Select your charging station from the list."
+      }
     },
-    "entity": {
-        "binary_sensor": {
-            "chargepoint_available": {
-                "name": "{chargepoint_uid} available",
-                "state": {
-                    "on": "Available",
-                    "off": "Occupied"
-                }
-            },
-            "chargingstation_available": {
-                "name": "Charging station available",
-                "state": {
-                    "on": "Charge point(s) available",
-                    "off": "No available charge points"
-                }
-            }
-        },
-        "sensor": {
-            "available_chargepoints": {
-                "name": "Available charge points",
-                "state": {
-                    "one": "{count} available charge point",
-                    "other": "{count} available charge points"
-                },
-                "state_attributes": {
-                    "total_chargepoints": {
-                        "name": "Total charge points"
-                    }
-                }
-            }
-        }
+    "abort": {
+      "already_configured": "Charging station is already configured",
+      "missing_coordinates": "Missing coordinates for searching charging stations",
+      "reconfigure_successful": "Reconfiguration was successful"
+    },
+    "error": {
+      "cannot_connect": "Failed to connect",
+      "no_stations_found": "No charging stations found near this location",
+      "station_not_found": "Selected charging station was not found",
+      "unknown": "Unexpected error"
     }
+  },
+  "exceptions": {
+    "migration_reconfigure_required": {
+      "message": "Entry {entry_title} could not be migrated automatically to DOT-NL. Open Settings -> Devices & services -> Laadpaal.io and choose Configure to select your charging station."
+    }
+  },
+  "issues": {
+    "migration_reconfigure_required": {
+      "title": "Reconfigure Laadpaal.io charging station",
+      "description": "The charging station \"{entry_title}\" could not be migrated automatically to DOT-NL. Open **Integrations -> Laadpaal.io** and select **Configure** (or **Reconfigure**) on this entry to choose your charging station."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "chargingstation_available": {
+        "name": "Charging station available",
+        "state": {
+          "on": "Charge point(s) available",
+          "off": "No available charge points"
+        }
+      }
+    },
+    "sensor": {
+      "available_chargepoints": {
+        "name": "Available charge points",
+        "state": {
+          "one": "{count} available charge point",
+          "other": "{count} available charge points"
+        },
+        "state_attributes": {
+          "total_chargepoints": {
+            "name": "Total charge points"
+          }
+        }
+      }
+    }
+  }
 }

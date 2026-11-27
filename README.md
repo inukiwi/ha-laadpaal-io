@@ -2,30 +2,35 @@
 
 ## About this repo
 ### English
-This integration provides real-time status updates for charging stations in The Netherlands using the API at [Laadpaal.io](https://laadpaal.io) (this service is also maintained by me ([@inukiwi](https://github.com/inukiwi))). The data is sourced from [DOT-NL by NDW](https://www.ndw.nu/dataportalen/dot-nl). It was created to monitor the availability of nearby or specific charging points directly within your dashboards without needing to check external apps constantly. With these sensors you also automate notifications for when a chargepoint becomes available so you can charge your EV.
+This integration provides real-time status updates for charging stations in The Netherlands by using data from [DOT-NL by NDW](https://www.ndw.nu/dataportalen/dot-nl). It is created to monitor the availability of nearby or specific charging stations within your dashboards without needing to check external apps constantly. With these sensors you also automate notifications for when a chargepoint becomes available so you can charge your EV.
 
 ### Dutch
-Deze integratie biedt real-time statusupdates voor laadpalen in Nederland via de API van [Laadpaal.io](https://laadpaal.io) (deze dienst wordt ook door mij onderhouden ([@inukiwi](https://github.com/inukiwi))). De data is afkomstig van [DOT-NL van het NDW](https://www.ndw.nu/dataportalen/dot-nl). Het is gemaakt om de beschikbaarheid van nabijgelegen of specifieke laadpunten direct in je dashboards te monitoren, zonder constant externe apps te hoeven checken. Met deze sensoren kan je ook meldingen automatiseren voor wanneer een laadpunt beschikbaar komt, zodat je je EV kunt opladen.
+Deze integratie biedt real-time statusupdates voor laadpalen in Nederland via de data van [DOT-NL van het NDW](https://www.ndw.nu/dataportalen/dot-nl). Het is gemaakt om de beschikbaarheid van nabijgelegen of specifieke laadstations direct in je dashboards te monitoren, zonder constant externe apps te hoeven checken. Met deze sensoren kan je ook meldingen automatiseren voor wanneer een laadpunt beschikbaar komt, zodat je je EV kunt opladen.
+
+> Version 2.0.0 and onwards directly fetch the data from DOT-NL. Versions below 2.0.0 still use the old Laadpaal.io APIs
+>
+> Vanaf versie 2.0.0 gebruikt deze integratie direct DOT-NL data. Versies lager dan 2.0.0 maken nog gebruik van de Laadpaal.io API's.
 
 ## Notes about data freshness
 ### English
-The data for Laadpaal.io is retrieved from the DOT-NL dataset every minute, but this data can be outdated depending on the charging station. The NDW depends on charging providers to supply the information and not every provider has a direct connection as of this moment, causing some charging stations to only be refreshed every 6 hours.
+The data is retrieved from DOT-NL every 5 minutes by default, but this data can be outdated depending on the charging station. The NDW depends on charging providers to supply the information and not every provider has a direct connection as of this moment, causing some charging stations to only be refreshed every 6 hours.
 
 ### Dutch
-De data van Laadpaal.io wordt elke minuut opgehaald vanuit de DOT-NL dataset, maar deze data kan afhankelijk van de laadpaal enigzins verouderd zijn. Het NDW is afhankelijk van de laadpaalaanbieders en nog niet elke aanbieder heeft een directe koppeling, waardoor sommige laadpalen alleen elke 6 uur worden bijgewerkt.
+De data wordt standaard elke 5 minuten opgehaald vanuit DOT-NL, maar deze data kan afhankelijk van de laadpaal enigzins verouderd zijn. Het NDW is afhankelijk van de laadpaalaanbieders en nog niet elke aanbieder heeft een directe koppeling, waardoor sommige laadpalen alleen elke 6 uur worden bijgewerkt.
 
 ---
 
 ## Installation
 
-I recommend installing it through [HACS](https://github.com/hacs/integration)
+I recommend installing it through the Home Assistant Marketplace.
 
-### Installing via HACS
-1. Go to **HACS** -> **Integrations**.
-1. Click the three dots in the top right corner and select **Custom repositories**.
-1. Add this repository URL into your HACS custom repositories and select **Integration** as the category.
+### Installing via Marketplace
+[![Open your Home Assistant instance and open a repository in the Marketplace.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=inukiwi&repository=ha-laadpaal-io)
+
+Use this button or follow the steps below.
+1. Go to **Settings** -> **Marketplace**.
+1. Click on **Add from link** in the top right corner and paste the link of this repository (https://github.com/inukiwi/ha-laadpaal-io).
 1. Search for **Laadpaal.io** and download it.
-1. **Restart** your Home Assistant instance.
 
 ### Manual Installation
 1. Download the source code of this repository.
@@ -48,12 +53,10 @@ I recommend installing it through [HACS](https://github.com/hacs/integration)
 ## Functionality
 
 ### Binary Sensors
-These sensors indicate whether a specific charging point or the entire station is in use.
-- **Charge Point Occupied**: Indicates if a specific charge point (UID) is currently occupied (On/Bezet) or available (Off/Beschikbaar).
-- **Charging Station Occupied**: A general sensor that turns 'On' if there are no available charge points left at the selected location.
+- **Charging station available**: A general sensor that turns 'On' if there are any available charge points at the selected location.
 
 ### Sensors
-- **Available Charge Points**: A numeric sensor that tracks the total number of free charging spots at the station.
+- **Available charge points**: A numeric sensor that tracks the total number of free charging spots at the station.
 
 ---
 

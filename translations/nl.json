@@ -1,58 +1,71 @@
 {
-    "config": {
-        "step": {
-            "user": {
-                "data": {
-                    "location": "Locatie",
-                    "location_id": "Laadpaal"
-                },
-                "description": "Selecteer de geschatte locatie van je laadpaal op de kaart. In de volgende stap kun je de exacte laadpaal selecteren uit een lijst met nabijgelegen locaties."
-            },
-            "location": {
-                "data": {
-                    "location_id": "Laadpaal"
-                },
-                "description": "Kies je laadpaal uit de lijst."
-            }
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "location": "Locatie"
         },
-        "abort": {
-            "already_configured": "Apparaat is al geconfigureerd"
+        "description": "Selecteer de geschatte locatie van je laadpaal op de kaart. In de volgende stap kun je de exacte laadpaal selecteren uit een lijst met nabijgelegen locaties."
+      },
+      "reconfigure": {
+        "data": {
+          "location": "Locatie"
         },
-        "error": {
-            "cannot_connect": "Kan geen verbinding maken",
-            "unknown": "Onverwachte fout"
-        }
+        "description": "Selecteer de geschatte locatie van je laadpaal op de kaart om deze configuratie bij te werken naar DOT-NL."
+      },
+      "location": {
+        "data": {
+          "feature_id": "Laadpaal"
+        },
+        "description": "Kies je laadpaal uit de lijst."
+      }
     },
-    "entity": {
-        "binary_sensor": {
-            "chargepoint_available": {
-                "name": "{chargepoint_uid} beschikbaar",
-                "state": {
-                    "on": "Beschikbaar",
-                    "off": "Bezet"
-                }
-            },
-            "chargingstation_available": {
-                "name": "Laadpaal beschikbaar",
-                "state": {
-                    "on": "Laadpunt(en) beschikbaar",
-                    "off": "Geen beschikbare laadpunten"
-                }
-            }
-        },
-        "sensor": {
-            "available_chargepoints": {
-                "name": "Beschikbare laadpunten",
-                "state": {
-                    "one": "{count} beschikbaar laadpunt",
-                    "other": "{count} beschikbare laadpunten"
-                },
-                "state_attributes": {
-                    "total_chargepoints": {
-                        "name": "Totaal aantal laadpunten"
-                    }
-                }
-            }
-        }
+    "abort": {
+      "already_configured": "Laadpaal is al geconfigureerd",
+      "missing_coordinates": "Coördinaten ontbreken om laadpalen te zoeken",
+      "reconfigure_successful": "Opnieuw configureren geslaagd"
+    },
+    "error": {
+      "cannot_connect": "Kan geen verbinding maken",
+      "no_stations_found": "Geen laadpalen gevonden in de buurt van deze locatie",
+      "station_not_found": "Geselecteerde laadpaal niet gevonden",
+      "unknown": "Onverwachte fout"
     }
+  },
+  "exceptions": {
+    "migration_reconfigure_required": {
+      "message": "Configuratie {entry_title} kon niet automatisch naar DOT-NL worden gemigreerd. Open Instellingen -> Apparaten en diensten -> Laadpaal.io en kies Configureren om je laadpaal opnieuw te selecteren."
+    }
+  },
+  "issues": {
+    "migration_reconfigure_required": {
+      "title": "Laadpaal.io laadpaal opnieuw configureren",
+      "description": "De laadpaal \"{entry_title}\" kon niet automatisch naar DOT-NL worden gemigreerd. Open **Integrations -> Laadpaal.io** en kies **Configure** (of **Opnieuw configureren**) bij deze configuratie om je laadpaal opnieuw te selecteren."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "chargingstation_available": {
+        "name": "Laadpaal beschikbaar",
+        "state": {
+          "on": "Laadpunt(en) beschikbaar",
+          "off": "Geen beschikbare laadpunten"
+        }
+      }
+    },
+    "sensor": {
+      "available_chargepoints": {
+        "name": "Beschikbare laadpunten",
+        "state": {
+          "one": "{count} beschikbaar laadpunt",
+          "other": "{count} beschikbare laadpunten"
+        },
+        "state_attributes": {
+          "total_chargepoints": {
+            "name": "Totaal aantal laadpunten"
+          }
+        }
+      }
+    }
+  }
 }
